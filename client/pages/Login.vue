@@ -133,11 +133,13 @@
 				// 验证成功
 				this.$refs.loginForm.validate((valid) => {
 					if (valid) {
-						this.$axios.post('/auth/login', this.formData).then(res => {
-							this.$store.dispatch('updateUserToken', res.body.token)
-							this.$router.push('/');
-							this.getUserInfo();
-						})
+						this.$router.push('/');
+						// FIXME: 服务器
+						// this.$axios.post('/auth/login', this.formData).then(res => { 
+						// 	this.$store.dispatch('updateUserToken', res.body.token)
+						// 	this.$router.push('/');
+						// 	this.getUserInfo();
+						// })
 					} else {
 						this.$message.error('请正确填下表单!')
 						return false;

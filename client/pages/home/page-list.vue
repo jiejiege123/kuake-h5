@@ -160,8 +160,8 @@
 			}
 		},
 		created() {
-			this.getPageList();
-			this.getPagesCount();
+			// this.getPageList(); // FIXME: 服务器
+			// this.getPagesCount(); // FIXME: 服务器
 			this.previewId = this.$route.query.previewId || ''
 			if (this.previewId) {
 				this.showPreview = true;
@@ -194,15 +194,19 @@
 			 */
 			createNewPage() {
 				let newPageData = editorProjectConfig.getProjectConfig()
-				this.loading = true;
-				this.$axios.post('/page/add', {...newPageData, pageMode: this.searchParams.pageMode, author: this.$store.state.user.userId}).then(res => {
-					this.loading = false;
-					if (res.body) {
-						this.$router.push({path: 'editor', query: {id: res.body._id}})
-					}
-				}).catch(() => {
-					this.loading = false;
-				})
+        this.loading = true;
+
+        this.$router.push({path: 'editor'})
+
+        // FIXME: 服务器
+				// this.$axios.post('/page/add', {...newPageData, pageMode: this.searchParams.pageMode, author: this.$store.state.user.userId}).then(res => {
+				// 	this.loading = false;
+				// 	if (res.body) {
+				// 		this.$router.push({path: 'editor', query: {id: res.body._id}})
+				// 	}
+				// }).catch(() => {
+				// 	this.loading = false;
+				// })
 			},
 			/**
 			 * 编辑页面
